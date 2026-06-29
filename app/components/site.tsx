@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
+import { CookieSettingsButton } from "./cookie-consent";
 
 export function Nav() {
   return (
@@ -37,8 +38,9 @@ export function FormulaBg({ img }: { img: string }) {
 
 export function Footer() {
   return (
-    <footer className="glass mt-2 flex flex-col gap-8 rounded-xl px-8 py-10">
-      <div className="flex flex-col justify-between gap-8 md:flex-row">
+    <footer className="glass relative mt-2 flex flex-col gap-8 overflow-hidden rounded-xl px-8 py-10">
+      <FormulaBg img="/7.png" />
+      <div className="relative flex flex-col justify-between gap-8 md:flex-row">
         <div className="max-w-xs">
           <span className="text-headline-md tracking-tight">
             N&amp;D <span className="text-primary">Education</span>
@@ -48,28 +50,65 @@ export function Footer() {
             în timp real.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-x-12 gap-y-6 sm:grid-cols-3">
-          <FooterCol title="Platformă" links={["Tutori", "Materiale", "Simulări", "Prețuri"]} />
-          <FooterCol title="Companie" links={["Despre", "Cariere", "Blog", "Contact"]} />
-          <FooterCol title="Legal" links={["Termeni", "Confidențialitate", "Cookies"]} />
+        <div className="grid grid-cols-2 gap-x-12 gap-y-6">
+          <FooterCol
+            title="Platformă"
+            links={[
+              { label: "Acasă", href: "/" },
+              { label: "Profesori", href: "/catalog" },
+              { label: "Testimoniale", href: "/testimoniale" },
+            ]}
+          />
+          <FooterCol
+            title="Legal"
+            links={[
+              { label: "Termeni și condiții", href: "/legal/termeni" },
+              { label: "Confidențialitate", href: "/legal/confidentialitate" },
+              { label: "Politică cookies", href: "/legal/cookies" },
+            ]}
+          />
         </div>
       </div>
-      <div className="flex flex-col gap-2 border-t border-outline-variant pt-6 text-on-surface-variant sm:flex-row sm:items-center sm:justify-between">
+      <div className="relative flex flex-col gap-3 border-t border-outline-variant pt-6 text-on-surface-variant sm:flex-row sm:items-center sm:justify-between">
         <span className="label-hud">© 2025 N&amp;D Education</span>
-        <span className="font-mono text-code-sm">status: <span className="text-secondary">online</span></span>
+        <div className="flex items-center gap-4">
+          <CookieSettingsButton />
+          <span className="font-mono text-code-sm">status: <span className="text-secondary">online</span></span>
+        </div>
       </div>
+      <p className="relative flex items-center justify-center gap-1.5 text-body-md text-on-surface-variant">
+        made with
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#ff3b30" aria-label="dragoste" role="img">
+          <path d="M12 21s-6.7-4.35-9.33-8.06C.9 10.2 1.5 6.7 4.2 5.3c2-1.04 4.2-.3 5.3 1.2l.5.7.5-.7c1.1-1.5 3.3-2.24 5.3-1.2 2.7 1.4 3.3 4.9 1.53 7.64C18.7 16.65 12 21 12 21z" />
+        </svg>
+        by{" "}
+        <a
+          href="https://www.skillview.ro/home"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold text-on-surface transition-colors hover:text-primary"
+        >
+          Skillview
+        </a>
+      </p>
     </footer>
   );
 }
 
-function FooterCol({ title, links }: { title: string; links: string[] }) {
+function FooterCol({
+  title,
+  links,
+}: {
+  title: string;
+  links: { label: string; href: string }[];
+}) {
   return (
     <div className="flex flex-col gap-3">
       <span className="label-hud text-on-surface">{title}</span>
       {links.map((l) => (
-        <a key={l} href="#" className="text-body-md text-on-surface-variant transition-colors hover:text-primary">
-          {l}
-        </a>
+        <Link key={l.href} href={l.href} className="text-body-md text-on-surface-variant transition-colors hover:text-primary">
+          {l.label}
+        </Link>
       ))}
     </div>
   );

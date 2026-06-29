@@ -19,12 +19,14 @@ export default function TestimonialePage() {
         <section className="glass relative overflow-hidden rounded-xl p-8">
           <FormulaBg img="/8.png" />
           <div className="relative flex flex-col gap-4">
+            <Chip tone="primary">Rezultate 100% reale</Chip>
             <h1 className="text-[clamp(2rem,5vw,3rem)] font-black uppercase leading-[1.2] tracking-[-0.03em]">
               <Marker>Testimoniale</Marker>
             </h1>
             <p className="max-w-xl text-body-lg text-on-surface-variant">
-              Rezultate reale, povestite de elevii noștri. Treci cu mouse-ul peste
-              un clip ca să pornească.
+              Rezultate și feedback <strong className="text-on-surface">reale</strong>,
+              direct de la elevii noștri. Nu promisiuni — dovezi pe care le poți
+              vedea și asculta mai jos.
             </p>
           </div>
         </section>

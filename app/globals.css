@@ -37,15 +37,16 @@
   --inverse-primary: #ffce6b;
   --surface-tint: #ffaa06;
 
-  --secondary: #0094a3;
-  --on-secondary: #ffffff;
-  --secondary-container: #aef4fb;
-  --on-secondary-container: #00363a;
+  /* Secondary/tertiary collapsed to the single brand accent (amber) */
+  --secondary: #ffaa06;
+  --on-secondary: #1c1300;
+  --secondary-container: #ffe0a3;
+  --on-secondary-container: #5a3d00;
 
-  --tertiary: #c2410c;
-  --on-tertiary: #ffffff;
-  --tertiary-container: #ffdbcc;
-  --on-tertiary-container: #5e1700;
+  --tertiary: #ffaa06;
+  --on-tertiary: #1c1300;
+  --tertiary-container: #ffe0a3;
+  --on-tertiary-container: #5a3d00;
 
   --error: #ba1a1a;
   --on-error: #ffffff;
@@ -89,15 +90,16 @@
   --inverse-primary: #7a5300;
   --surface-tint: #ffaa06;
 
-  --secondary: #00eefc;
-  --on-secondary: #00363a;
-  --secondary-container: #00484e;
-  --on-secondary-container: #6ff6ff;
+  /* Secondary/tertiary collapsed to the single brand accent (amber) */
+  --secondary: #ffaa06;
+  --on-secondary: #1c1300;
+  --secondary-container: #5a3d00;
+  --on-secondary-container: #ffce6b;
 
-  --tertiary: #ff7a3c;
-  --on-tertiary: #5e1700;
-  --tertiary-container: #7a2e10;
-  --on-tertiary-container: #ffdbd0;
+  --tertiary: #ffaa06;
+  --on-tertiary: #1c1300;
+  --tertiary-container: #5a3d00;
+  --on-tertiary-container: #ffce6b;
 
   --error: #ffb4ab;
   --on-error: #690005;
@@ -283,4 +285,34 @@ body {
     from { opacity: 0; transform: translateY(8px) scale(0.98); }
     to { opacity: 1; transform: translateY(0) scale(1); }
   }
+
+  /* Typographic styles for legal pages (no typography plugin) */
+  .legal-prose {
+    color: var(--color-on-surface-variant);
+    font-size: var(--text-body-md);
+    line-height: 1.7;
+  }
+  .legal-prose h2 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-size: var(--text-headline-md);
+    font-weight: 700;
+    color: var(--color-on-surface);
+  }
+  .legal-prose h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: var(--text-body-lg);
+    font-weight: 600;
+    color: var(--color-on-surface);
+  }
+  .legal-prose p { margin-bottom: 1rem; }
+  .legal-prose ul {
+    margin: 0 0 1rem 1.25rem;
+    list-style: disc;
+  }
+  .legal-prose li { margin-bottom: 0.4rem; }
+  .legal-prose strong { color: var(--color-on-surface); font-weight: 600; }
+  .legal-prose a { color: var(--color-primary); text-underline-offset: 2px; }
+  .legal-prose a:hover { text-decoration: underline; }
 }

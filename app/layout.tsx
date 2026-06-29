@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { CookieConsent } from "./components/cookie-consent";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -38,6 +39,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col font-sans text-on-surface">
         {children}
+        <CookieConsent />
       </body>
     </html>
   );

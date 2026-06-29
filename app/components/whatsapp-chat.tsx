@@ -141,7 +141,7 @@ function Bubble({ msg }: { msg: Msg }) {
         <span className="mt-0.5 flex items-center justify-end gap-1 text-[10px] text-white/50">
           {msg.time}
           {out && (
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#53bdeb" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9d1d3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M1 13l4 4L13 7M9 13l4 4L23 5" />
             </svg>
           )}
