@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
 import { CookieSettingsButton } from "./cookie-consent";
 import { EnrollButton } from "./enroll-modal";
+import { MobileMenu } from "./mobile-menu";
 
 /**
  * Brand wordmark: serif "N&D" + bold uppercase "Education", matching the logo.
@@ -36,11 +37,8 @@ export function Wordmark({
 
 export function Nav() {
   return (
-    <header className="glass flex items-center justify-between rounded-xl px-6 py-4">
-      <Link href="/" className="flex items-center gap-3">
-        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-primary font-sans text-sm font-black text-on-primary">
-          ND
-        </span>
+    <header className="glass relative z-50 flex items-center justify-between rounded-xl px-6 py-4">
+      <Link href="/" className="flex items-center">
         <Wordmark className="text-headline-md" />
       </Link>
       <nav className="hidden items-center gap-8 md:flex">
@@ -48,12 +46,13 @@ export function Nav() {
         <Link className="label-hud text-on-surface-variant transition-colors hover:text-on-surface" href="/testimoniale">Testimoniale</Link>
         <Link className="label-hud text-on-surface-variant transition-colors hover:text-on-surface" href="/despre">Despre noi</Link>
       </nav>
-      <div className="flex items-center gap-3">
+      <div className="hidden items-center gap-3 md:flex">
         <ThemeToggle />
         <EnrollButton className="cta-pulse h-11 rounded-md bg-primary px-5 text-label-md font-semibold uppercase tracking-wide text-on-primary transition-shadow hover:shadow-[0_0_24px_-4px_#ffaa06]">
           Începe acum
         </EnrollButton>
       </div>
+      <MobileMenu />
     </header>
   );
 }

@@ -56,8 +56,8 @@ export default function Catalog() {
         <section className="glass relative overflow-hidden rounded-xl p-8">
           <FormulaBg img="/5.png" />
           <div className="relative flex flex-col gap-4">
-            <h1 className="text-[clamp(2rem,5vw,3rem)] font-black uppercase leading-[1.2] tracking-[-0.03em]">
-              Profesorii <Marker>noștri</Marker>
+            <h1 className="text-[clamp(2rem,5vw,3rem)] font-black uppercase leading-[1.4] tracking-[-0.03em]">
+              Profesorii <Marker className="marker-bounce">noștri</Marker>
             </h1>
             <p className="max-w-xl text-body-lg text-on-surface-variant">
               Meditatori verificați, cu rezultate dovedite. Rezervă o sesiune în

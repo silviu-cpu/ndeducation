@@ -11,7 +11,12 @@ const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? "";
 
 type Status = "idle" | "sending" | "success" | "error";
 
-/** Button that opens the enroll modal (dispatch a window event). */
+/** Open the enroll modal from anywhere. */
+export function openEnroll() {
+  window.dispatchEvent(new CustomEvent(OPEN_EVENT));
+}
+
+/** Button that opens the enroll modal. */
 export function EnrollButton({
   className = "",
   children,
@@ -20,11 +25,7 @@ export function EnrollButton({
   children: React.ReactNode;
 }) {
   return (
-    <button
-      type="button"
-      className={className}
-      onClick={() => window.dispatchEvent(new CustomEvent(OPEN_EVENT))}
-    >
+    <button type="button" className={className} onClick={openEnroll}>
       {children}
     </button>
   );
