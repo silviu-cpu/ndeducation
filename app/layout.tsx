@@ -22,8 +22,16 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "ND Education — Neo-Gen High Tech",
-  description: "A premium learning command center.",
+  title: "N&D Education",
+  description:
+    "Meditații 1-la-1 premium pentru Bacalaureat — Matematică și Română. Profesori dedicați, simulări reale, progres monitorizat și suport 24/7 pe WhatsApp.",
+  openGraph: {
+    title: "N&D Education",
+    description:
+      "Meditații 1-la-1 premium pentru Bacalaureat — Matematică și Română. Profesori dedicați, simulări reale și suport 24/7 pe WhatsApp.",
+    type: "website",
+    locale: "ro_RO",
+  },
 };
 
 export default function RootLayout({

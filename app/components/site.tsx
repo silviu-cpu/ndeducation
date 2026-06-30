@@ -37,7 +37,10 @@ export function Wordmark({
 export function Nav() {
   return (
     <header className="glass flex items-center justify-between rounded-xl px-6 py-4">
-      <Link href="/" className="flex items-center">
+      <Link href="/" className="flex items-center gap-3">
+        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-primary font-sans text-sm font-black text-on-primary">
+          ND
+        </span>
         <Wordmark className="text-headline-md" />
       </Link>
       <nav className="hidden items-center gap-8 md:flex">
