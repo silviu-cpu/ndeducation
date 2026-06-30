@@ -15,7 +15,13 @@ export function IntroSplash() {
   useEffect(() => {
     if (played) return;
     played = true;
-    const t = setTimeout(() => setShow(false), DURATION);
+    // Signal other components (e.g. stat count-up) that the splash is covering the page.
+    document.documentElement.dataset.intro = "playing";
+    const t = setTimeout(() => {
+      setShow(false);
+      delete document.documentElement.dataset.intro;
+      window.dispatchEvent(new Event("intro-done"));
+    }, DURATION);
     return () => clearTimeout(t);
   }, []);
 
@@ -32,10 +38,7 @@ export function IntroSplash() {
         backgroundPosition: "center",
       }}
     >
-      <div className="intro-content flex flex-col items-center gap-5 text-center">
-        <span className="grid h-16 place-items-center rounded-lg bg-primary px-4 font-mono text-3xl font-black text-on-primary">
-          N&amp;D
-        </span>
+      <div className="intro-content flex flex-col items-center gap-6 text-center">
         <h1 className="text-[clamp(1.75rem,6vw,3rem)] font-black uppercase leading-[1.1] tracking-[-0.03em]">
           Meditații 1-la-1 <Marker>premium</Marker>
         </h1>

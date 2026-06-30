@@ -1,37 +1,98 @@
 import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
 import { CookieSettingsButton } from "./cookie-consent";
+import { EnrollButton } from "./enroll-modal";
+
+/**
+ * Brand wordmark: serif "N&D" + bold uppercase "Education", matching the logo.
+ * Color is inherited so it stays legible on both themes.
+ */
+export function Wordmark({
+  className = "",
+  stacked = false,
+}: {
+  className?: string;
+  stacked?: boolean;
+}) {
+  if (stacked) {
+    return (
+      <span className={`inline-flex flex-col items-center leading-[0.95] ${className}`}>
+        <span className="font-serif text-[1.3em] font-extrabold tracking-tight">
+          N<span className="font-sans">&amp;</span>D
+        </span>
+        <span className="text-[0.58em] font-extrabold uppercase tracking-[0.18em] text-primary">Education</span>
+      </span>
+    );
+  }
+  return (
+    <span className={`inline-flex items-baseline gap-2 whitespace-nowrap ${className}`}>
+      <span className="font-serif font-extrabold tracking-tight">
+        N<span className="font-sans">&amp;</span>D
+      </span>
+      <span className="text-[0.78em] font-extrabold uppercase tracking-[0.12em] text-primary">Education</span>
+    </span>
+  );
+}
 
 export function Nav() {
   return (
     <header className="glass flex items-center justify-between rounded-xl px-6 py-4">
-      <Link href="/" className="flex items-center gap-3">
-        <span className="grid h-9 place-items-center rounded-md bg-primary px-2 font-mono text-sm font-black text-on-primary">
-          N&amp;D
-        </span>
-        <span className="text-headline-md tracking-tight">Education</span>
+      <Link href="/" className="flex items-center">
+        <Wordmark className="text-headline-md" />
       </Link>
       <nav className="hidden items-center gap-8 md:flex">
-        <Link className="label-hud text-on-surface-variant transition-colors hover:text-on-surface" href="/catalog">Profesori</Link>
+        <Link className="label-hud text-on-surface-variant transition-colors hover:text-on-surface" href="/profesori">Profesori</Link>
         <Link className="label-hud text-on-surface-variant transition-colors hover:text-on-surface" href="/testimoniale">Testimoniale</Link>
+        <Link className="label-hud text-on-surface-variant transition-colors hover:text-on-surface" href="/despre">Despre noi</Link>
       </nav>
       <div className="flex items-center gap-3">
         <ThemeToggle />
-        <button className="h-11 rounded-md bg-primary px-5 text-label-md font-semibold uppercase tracking-wide text-on-primary transition-shadow hover:shadow-[0_0_24px_-4px_#ffaa06]">
+        <EnrollButton className="cta-pulse h-11 rounded-md bg-primary px-5 text-label-md font-semibold uppercase tracking-wide text-on-primary transition-shadow hover:shadow-[0_0_24px_-4px_#ffaa06]">
           Începe acum
-        </button>
+        </EnrollButton>
       </div>
     </header>
   );
 }
 
 /** Decorative handwritten-formula texture layer (4–10.png). Theme-aware via CSS. */
-export function FormulaBg({ img }: { img: string }) {
+export function FormulaBg({
+  img,
+  duration,
+  size,
+  opacity,
+  posX,
+  posY,
+  cover,
+}: {
+  img: string;
+  duration?: number;
+  /** Background-size in % (default 120). Higher = more zoomed in. */
+  size?: number;
+  /** Override the layer opacity for stronger/weaker contrast on this instance. */
+  opacity?: number;
+  /** Horizontal shift in % (positive = move the image to the right). */
+  posX?: number;
+  /** Vertical shift in % (positive = move down). */
+  posY?: number;
+  /** Fill the whole element (background-size: cover), static — guarantees no gaps. */
+  cover?: boolean;
+}) {
+  const style: React.CSSProperties = { backgroundImage: `url(${img})` };
+  if (duration) style.animationDuration = `${duration}s`;
+  if (opacity != null) style.opacity = opacity;
+  if (!cover) {
+    if (size) style.backgroundSize = `${size}%`;
+    const vars = style as Record<string, string | number>;
+    if (posX != null) vars["--fx"] = `${posX}%`;
+    if (posY != null) vars["--fy"] = `${posY}%`;
+  }
+
   return (
     <div
       aria-hidden
-      className="formula-layer"
-      style={{ backgroundImage: `url(${img})` }}
+      className={`formula-layer${cover ? " formula-cover" : ""}`}
+      style={style}
     />
   );
 }
@@ -42,12 +103,10 @@ export function Footer() {
       <FormulaBg img="/7.png" />
       <div className="relative flex flex-col justify-between gap-8 md:flex-row">
         <div className="max-w-xs">
-          <span className="text-headline-md tracking-tight">
-            N&amp;D <span className="text-primary">Education</span>
-          </span>
+          <Wordmark className="text-headline-md" />
           <p className="mt-3 text-body-md text-on-surface-variant">
-            Centrul de comandă pentru Bacalaureat. Meditații, simulări și progres
-            în timp real.
+            Meditații 1-la-1 premium pentru Bacalaureat. Profesori dedicați,
+            pregătire structurată și rezultate dovedite.
           </p>
         </div>
         <div className="grid grid-cols-2 gap-x-12 gap-y-6">
@@ -55,8 +114,9 @@ export function Footer() {
             title="Platformă"
             links={[
               { label: "Acasă", href: "/" },
-              { label: "Profesori", href: "/catalog" },
+              { label: "Profesori", href: "/profesori" },
               { label: "Testimoniale", href: "/testimoniale" },
+              { label: "Despre noi", href: "/despre" },
             ]}
           />
           <FooterCol
@@ -117,9 +177,11 @@ function FooterCol({
 export function Chip({
   children,
   tone = "primary",
+  className = "",
 }: {
   children: React.ReactNode;
   tone?: "primary" | "secondary" | "tertiary" | "ghost";
+  className?: string;
 }) {
   const tones = {
     primary: "bg-primary text-on-primary",
@@ -129,7 +191,7 @@ export function Chip({
   };
   return (
     <span
-      className={`rounded-full px-3 py-1 text-label-md font-semibold uppercase tracking-wide ${tones[tone]}`}
+      className={`inline-block rounded-full px-3 py-1 text-label-md font-semibold uppercase tracking-wide ${tones[tone]} ${className}`}
     >
       {children}
     </span>

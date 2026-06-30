@@ -7,30 +7,23 @@ type Testimonial = {
   src: string;
   name: string;
   role: string;
-  quote: string;
 };
 
 const testimonials: Testimonial[] = [
   {
     src: "/video.mp4",
-    name: "Andrei M.",
-    role: "Promoția 2024 · Matematică",
-    quote:
-      "Am intrat la Politehnică cu media 9,80. Meditațiile 1-la-1 au făcut diferența.",
+    name: "Rareș Lăpădat",
+    role: "Clasa a 12-a · Științe ale naturii, bilingv engleză",
   },
   {
     src: "/video2.mp4",
-    name: "Ioana P.",
-    role: "Promoția 2024 · Filologie",
-    quote:
-      "De la 6 la 9 la Română în trei luni. Suportul pe WhatsApp m-a salvat înainte de probe.",
+    name: "Adara Iliescu",
+    role: "Clasa a 12-a · Științe ale naturii, bilingv engleză",
   },
   {
     src: "/video3.mp4",
-    name: "Robert D.",
-    role: "Promoția 2023 · Științe",
-    quote:
-      "Simulările și feedbackul instant m-au făcut să ajung pregătit în ziua examenului.",
+    name: "Codrin Lăpădat",
+    role: "CNOG · Clasa a X-a, Filologie",
   },
 ];
 
@@ -53,6 +46,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
     const v = videoRef.current;
     if (!v) return;
     v.muted = false;
+    v.volume = 0.2;
     // Try with sound; if the browser blocks it (no prior gesture), fall back to muted.
     v.play().catch(() => {
       v.muted = true;
@@ -103,12 +97,9 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         )}
       </div>
 
-      <div className="flex flex-col gap-3 px-1 pb-1">
-        <p className="text-body-md italic text-on-surface">“{testimonial.quote}”</p>
-        <div className="flex flex-col gap-1">
-          <Marker className="w-fit text-sm">{testimonial.name}</Marker>
-          <span className="label-hud text-on-surface-variant">{testimonial.role}</span>
-        </div>
+      <div className="flex flex-col gap-2 px-1 pb-1">
+        <Marker className="w-fit text-sm">{testimonial.name}</Marker>
+        <span className="label-hud text-on-surface-variant">{testimonial.role}</span>
       </div>
     </article>
   );

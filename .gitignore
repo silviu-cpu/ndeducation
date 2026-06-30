@@ -32,6 +32,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# public (NEXT_PUBLIC) config committed so Amplify gets it from the repo
+!.env
 
 # vercel
 .vercel

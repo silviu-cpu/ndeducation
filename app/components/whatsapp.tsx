@@ -15,8 +15,9 @@ export function WhatsAppSection() {
       {/* Explanatory text */}
       <div className="relative flex flex-col gap-6">
         <SectionLabel>Suport</SectionLabel>
-        <h2 className="text-[clamp(2rem,4vw,2.75rem)] font-black uppercase leading-[1.1] tracking-[-0.03em]">
-          Suport 24/7 pe <Marker>WhatsApp</Marker>
+        <h2 className="text-[clamp(2rem,4vw,2.75rem)] font-black uppercase leading-[1.45] tracking-[-0.03em]">
+          Suport <span className="text-primary live-pulse">24/7</span> pe{" "}
+          <Marker className="ml-2 marker-bounce">WhatsApp</Marker>
         </h2>
         <p className="max-w-md text-body-lg text-on-surface-variant">
           Unul dintre aspectele cheie ale meditațiilor noastre este suportul
@@ -40,10 +41,10 @@ export function WhatsAppSection() {
           ))}
         </ul>
         <a
-          href="https://wa.me/40700000000"
+          href="https://wa.me/40766661551"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex h-12 w-fit items-center gap-2 rounded-md bg-[#25d366] px-6 text-label-md font-semibold uppercase tracking-wide text-white transition-shadow hover:shadow-[0_0_28px_-4px_#25d366]"
+          className="wa-pulse inline-flex h-12 w-fit items-center gap-2 rounded-md bg-[#25d366] px-6 text-label-md font-semibold uppercase tracking-wide text-white transition-shadow hover:shadow-[0_0_28px_-4px_#25d366]"
         >
           <WhatsAppGlyph />
           Scrie-ne pe WhatsApp

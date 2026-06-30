@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Montserrat, JetBrains_Mono } from "next/font/google";
+import { Montserrat, JetBrains_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { CookieConsent } from "./components/cookie-consent";
+import { EnrollModal } from "./components/enroll-modal";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -11,6 +12,13 @@ const montserrat = Montserrat({
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+});
+
+// Serif used for the "N&D" part of the brand wordmark.
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -27,7 +35,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`dark ${montserrat.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`dark ${montserrat.variable} ${jetbrainsMono.variable} ${playfair.variable} h-full antialiased`}
     >
       <head>
         <script
@@ -39,6 +47,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col font-sans text-on-surface">
         {children}
+        <EnrollModal />
         <CookieConsent />
       </body>
     </html>

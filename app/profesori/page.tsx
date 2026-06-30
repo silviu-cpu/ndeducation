@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Nav, Footer, Chip, Marker, FormulaBg } from "../components/site";
+import { EnrollButton } from "../components/enroll-modal";
 
 export const metadata: Metadata = {
   title: "Profesori — N&D Education",
@@ -40,54 +42,12 @@ const tutors: Tutor[] = [
     price: 100,
     blurb: "Eseuri structurate și comentarii literare care iau punctaj maxim la proba scrisă.",
   },
-  {
-    name: "Mihai Dumitrescu",
-    title: "Ing.",
-    subject: "Informatică",
-    tone: "secondary",
-    rating: 4.8,
-    sessions: 760,
-    price: 150,
-    blurb: "C++ și pseudocod, algoritmi și structuri de date pentru subiectul III.",
-  },
-  {
-    name: "Daria Popescu",
-    title: "Drd.",
-    subject: "Fizică",
-    tone: "secondary",
-    rating: 4.9,
-    sessions: 612,
-    price: 130,
-    blurb: "Mecanică, termodinamică și electricitate explicate prin probleme tip BAC.",
-  },
-  {
-    name: "Alexandra Vintu",
-    title: "Prof.",
-    subject: "Biologie",
-    tone: "tertiary",
-    rating: 4.7,
-    sessions: 530,
-    price: 110,
-    blurb: "Anatomie și genetică pe înțelesul tuturor, cu scheme și recapitulări rapide.",
-  },
-  {
-    name: "Maria Lungu",
-    title: "Dr.",
-    subject: "Chimie",
-    tone: "primary",
-    rating: 5.0,
-    sessions: 870,
-    price: 140,
-    blurb: "Chimie organică și anorganică, reacții cheie și exerciții cronometrate.",
-  },
 ];
-
-const filters = ["Toate", "Matematică", "Informatică", "Fizică", "Chimie", "Biologie", "Română"];
 
 export default function Catalog() {
   return (
     <div className="relative flex flex-1 flex-col overflow-hidden">
-      <div className="pointer-events-none absolute -top-40 right-0 h-96 w-96 rounded-full bg-primary/15 blur-[120px]" />
+      <div className="blob pointer-events-none absolute -top-40 right-0 h-96 w-96 rounded-full bg-primary/15 blur-[120px]" />
 
       <div className="relative mx-auto flex w-full max-w-[1280px] flex-1 flex-col gap-6 px-4 py-6 sm:px-8">
         <Nav />
@@ -100,16 +60,9 @@ export default function Catalog() {
               Profesorii <Marker>noștri</Marker>
             </h1>
             <p className="max-w-xl text-body-lg text-on-surface-variant">
-              Meditatori verificați, cu rezultate dovedite. Filtrează după materie
-              și rezervă o sesiune în câteva secunde.
+              Meditatori verificați, cu rezultate dovedite. Rezervă o sesiune în
+              câteva secunde.
             </p>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {filters.map((f, i) => (
-                <button key={f}>
-                  <Chip tone={i === 0 ? "primary" : "ghost"}>{f}</Chip>
-                </button>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -172,14 +125,22 @@ function TutorCard({ tutor }: { tutor: Tutor }) {
 
       <p className="flex-1 text-body-md text-on-surface-variant">{tutor.blurb}</p>
 
-      <div className="flex items-center justify-between border-t border-outline-variant pt-5">
+      <div className="flex flex-col gap-4 border-t border-outline-variant pt-5">
         <p className="font-mono text-on-surface">
           <span className="text-2xl font-black text-primary">{tutor.price}</span>
           <span className="text-body-md text-on-surface-variant"> RON / oră</span>
         </p>
-        <button className="h-11 rounded-md bg-primary px-5 text-label-md font-semibold uppercase tracking-wide text-on-primary transition-shadow hover:shadow-[0_0_24px_-4px_#ffaa06]">
-          Rezervă
-        </button>
+        <div className="flex gap-2">
+          <EnrollButton className="h-11 flex-1 rounded-md bg-primary text-label-md font-semibold uppercase tracking-wide text-on-primary transition-shadow hover:shadow-[0_0_24px_-4px_#ffaa06]">
+            Rezervă
+          </EnrollButton>
+          <Link
+            href="/despre"
+            className="grid h-11 flex-1 place-items-center rounded-md border border-outline-variant text-label-md font-semibold uppercase tracking-wide text-on-surface transition-colors hover:border-primary hover:text-primary"
+          >
+            Despre noi
+          </Link>
+        </div>
       </div>
     </article>
   );
