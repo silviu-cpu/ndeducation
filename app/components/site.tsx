@@ -37,7 +37,7 @@ export function Wordmark({
 
 export function Nav() {
   return (
-    <header className="glass relative z-50 flex items-center justify-between rounded-xl px-6 py-4">
+    <header className="glass sticky top-4 z-50 flex items-center justify-between rounded-xl px-6 py-4">
       <Link href="/" className="flex items-center">
         <Wordmark className="text-headline-md" />
       </Link>
@@ -133,10 +133,7 @@ export function Footer() {
       </div>
       <div className="relative flex flex-col gap-3 border-t border-outline-variant pt-6 text-on-surface-variant sm:flex-row sm:items-center sm:justify-between">
         <span className="label-hud">© 2025 N&amp;D Education</span>
-        <div className="flex items-center gap-4">
-          <CookieSettingsButton />
-          <span className="font-mono text-code-sm">status: <span className="text-secondary">online</span></span>
-        </div>
+        <CookieSettingsButton />
       </div>
       <p className="relative flex items-center justify-center gap-1.5 text-body-md text-on-surface-variant">
         made with

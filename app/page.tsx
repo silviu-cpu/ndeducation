@@ -8,7 +8,7 @@ import { EnrollButton } from "./components/enroll-modal";
 
 export default function Home() {
   return (
-    <div className="relative flex flex-1 flex-col overflow-hidden">
+    <div className="relative flex flex-1 flex-col overflow-clip">
       <IntroSplash />
       {/* Ambient light-leaks */}
       <div className="blob pointer-events-none absolute -top-40 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-[120px]" />
@@ -121,9 +121,10 @@ export default function Home() {
 
             <Feature
               className="md:col-span-3 lg:col-span-6"
-              kicker="Simulări reale"
-              title="Subiecte tip examen"
-              body="Cronometrate și notate automat, exact ca în ziua probei."
+              tone="tertiary"
+              kicker="Limba română"
+              title="Meditații la Limba română"
+              body="Ședințe 1-la-1 la Limba și literatura română: eseuri, comentarii și subiecte de examen, pentru punctaj maxim la proba scrisă."
             />
             <Feature
               className="md:col-span-3 lg:col-span-6"

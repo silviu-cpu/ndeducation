@@ -46,7 +46,7 @@ const tutors: Tutor[] = [
 
 export default function Catalog() {
   return (
-    <div className="relative flex flex-1 flex-col overflow-hidden">
+    <div className="relative flex flex-1 flex-col overflow-clip">
       <div className="blob pointer-events-none absolute -top-40 right-0 h-96 w-96 rounded-full bg-primary/15 blur-[120px]" />
 
       <div className="relative mx-auto flex w-full max-w-[1280px] flex-1 flex-col gap-6 px-4 py-6 sm:px-8">
